@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml"
+      spacing="20" alignment="CENTER" style="-fx-background-color: #f0f0f0; -fx-padding: 50;">
+    <Label text="Welcome to Dashboard!" style="-fx-font-size: 24px; -fx-text-fill: #333333;"/>
+</VBox>
