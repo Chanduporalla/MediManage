@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/11"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -11,22 +12,32 @@
     <children>
 
         <Label text="Login"
-               layoutX="170" layoutY="20"/>
+               layoutX="170" layoutY="20">
+            <font>
+                <Font size="20"/>
+            </font>
+        </Label>
 
         <TextField fx:id="username"
                    promptText="Username"
-                   layoutX="120" layoutY="80"/>
+                   layoutX="100" layoutY="80"
+                   prefWidth="200"/>
 
         <PasswordField fx:id="password"
                        promptText="Password"
-                       layoutX="120" layoutY="120"/>
+                       layoutX="100" layoutY="120"
+                       prefWidth="200"/>
 
         <Button text="Login"
                 layoutX="170" layoutY="170"
+                prefWidth="60"
                 onAction="#handleLogin"/>
 
         <Label fx:id="message"
-               layoutX="120" layoutY="210"/>
+               layoutX="100" layoutY="210"
+               prefWidth="200"
+               style="-fx-text-fill: red;"
+               alignment="CENTER"/>
 
     </children>
 </AnchorPane>

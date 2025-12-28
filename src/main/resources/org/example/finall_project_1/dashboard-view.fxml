@@ -1,10 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml"
-      spacing="20" alignment="CENTER" style="-fx-background-color: #f0f0f0; -fx-padding: 50;">
-    <Label text="Welcome to Dashboard!" style="-fx-font-size: 24px; -fx-text-fill: #333333;"/>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx/11"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.finall_project_1.DashboardController">
+
+    <!-- Top KPIs -->
+    <top>
+        <HBox spacing="20" padding="10">
+            <children>
+                <VBox>
+                    <Label text="Daily Sales" />
+                    <Label fx:id="dailySales" text="₹0" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+                </VBox>
+                <VBox>
+                    <Label text="Total Profit" />
+                    <Label fx:id="totalProfit" text="₹0" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+                </VBox>
+                <VBox>
+                    <Label text="Pending Prescriptions" />
+                    <Label fx:id="pendingRx" text="0" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+                </VBox>
+                <VBox>
+                    <Label text="Low Stock Items" />
+                    <Label fx:id="lowStock" text="0" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+                </VBox>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- Center: Inventory Table -->
+    <center>
+        <TableView fx:id="inventoryTable" prefHeight="300" prefWidth="600">
+            <columns>
+                <TableColumn text="Medicine Name" fx:id="colMedicine"/>
+                <TableColumn text="Batch Number" fx:id="colBatch"/>
+                <TableColumn text="Expiry Date" fx:id="colExpiry"/>
+                <TableColumn text="HSN Code" fx:id="colHSN"/>
+                <TableColumn text="Stock" fx:id="colStock"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <!-- Right: Billing Panel -->
+    <right>
+        <VBox spacing="10" padding="10">
+            <children>
+                <Label text="Billing" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+                <TextField fx:id="searchMedicine" promptText="Search Medicine"/>
+                <Button text="Add to Bill" fx:id="btnAddBill"/>
+                <TableView fx:id="billingTable" prefHeight="200">
+                    <columns>
+                        <TableColumn text="Medicine" fx:id="billColName"/>
+                        <TableColumn text="Qty" fx:id="billColQty"/>
+                        <TableColumn text="Price" fx:id="billColPrice"/>
+                        <TableColumn text="GST" fx:id="billColGST"/>
+                        <TableColumn text="Total" fx:id="billColTotal"/>
+                    </columns>
+                </TableView>
+                <Label text="Total: ₹" />
+                <Label fx:id="lblTotal" text="0"/>
+                <Button text="Generate Invoice" fx:id="btnGenerateInvoice"/>
+            </children>
+        </VBox>
+    </right>
+
+</BorderPane>

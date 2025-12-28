@@ -10,12 +10,22 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        FXMLLoader loader =
-                new FXMLLoader(getClass().getResource("login-view.fxml"));
+        // Initialize DB once
+        DBUtil.initDB();
+
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "/org/example/finall_project_1/login-view.fxml"
+                )
+        );
 
         Scene scene = new Scene(loader.load(), 420, 520);
+
+        // Correct CSS path
         scene.getStylesheets().add(
-                getClass().getResource("style.css").toExternalForm()
+                getClass().getResource(
+                        "/org/example/finall_project_1/style.css"
+                ).toExternalForm()
         );
 
         stage.setTitle("Medical Billing System - Login");
