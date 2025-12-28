@@ -3,70 +3,55 @@ package org.example.finall_project_1;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
+import javafx.scene.control.Label;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class LoginController {
 
     @FXML
-    private TextField usernameField;
+    private TextField username;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField password;
 
-    private final String DB_URL = "jdbc:sqlite:users.db"; // Path to your SQLite DB
+    @FXML
+    private Label message;
+
+    @FXML
+    private void initialize() {
+        DBUtil.initDB();
+    }
 
     @FXML
     private void handleLogin() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        String user = username.getText();
+        String pass = password.getText();
 
-        if(authenticate(username, password)) {
-            openDashboard();
+        if (authenticate(user, pass)) {
+            message.setText("Login Successful ✅");
         } else {
-            showAlert("Invalid username or password");
+            message.setText("Invalid Username or Password ❌");
         }
     }
 
-    private boolean authenticate(String username, String password) {
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
-        try (Connection conn = DriverManager.getConnection(DB_URL);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+    private boolean authenticate(String user, String pass) {
+        String sql = "SELECT * FROM users WHERE username=? AND password=?";
 
-            stmt.setString(1, username);
-            stmt.setString(2, password);
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ResultSet rs = stmt.executeQuery();
-            return rs.next(); // returns true if a match is found
+            ps.setString(1, user);
+            ps.setString(2, pass);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Database error: " + e.getMessage());
-            return false;
-        }
-    }
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
 
-    private void openDashboard() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard-view.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) usernameField.getScene().getWindow(); // get current window
-            stage.setScene(new Scene(root));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Login Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        return false;
     }
 }
