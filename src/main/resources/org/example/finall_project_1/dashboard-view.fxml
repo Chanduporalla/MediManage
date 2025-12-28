@@ -1,70 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11"
+<AnchorPane xmlns="http://javafx.com/javafx/11"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.finall_project_1.DashboardController">
+            fx:controller="org.example.finall_project_1.DashboardController"
+            prefWidth="1000" prefHeight="700">
 
-    <!-- Top KPIs -->
-    <top>
-        <HBox spacing="20" padding="10">
-            <children>
-                <VBox>
-                    <Label text="Daily Sales" />
-                    <Label fx:id="dailySales" text="₹0" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
-                </VBox>
-                <VBox>
-                    <Label text="Total Profit" />
-                    <Label fx:id="totalProfit" text="₹0" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
-                </VBox>
-                <VBox>
-                    <Label text="Pending Prescriptions" />
-                    <Label fx:id="pendingRx" text="0" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
-                </VBox>
-                <VBox>
-                    <Label text="Low Stock Items" />
-                    <Label fx:id="lowStock" text="0" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
-                </VBox>
-            </children>
-        </HBox>
-    </top>
+    <children>
+        <!-- Main VBox -->
+        <VBox spacing="20" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+              AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
 
-    <!-- Center: Inventory Table -->
-    <center>
-        <TableView fx:id="inventoryTable" prefHeight="300" prefWidth="600">
-            <columns>
-                <TableColumn text="Medicine Name" fx:id="colMedicine"/>
-                <TableColumn text="Batch Number" fx:id="colBatch"/>
-                <TableColumn text="Expiry Date" fx:id="colExpiry"/>
-                <TableColumn text="HSN Code" fx:id="colHSN"/>
-                <TableColumn text="Stock" fx:id="colStock"/>
-            </columns>
-        </TableView>
-    </center>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
-    <!-- Right: Billing Panel -->
-    <right>
-        <VBox spacing="10" padding="10">
-            <children>
-                <Label text="Billing" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
-                <TextField fx:id="searchMedicine" promptText="Search Medicine"/>
-                <Button text="Add to Bill" fx:id="btnAddBill"/>
-                <TableView fx:id="billingTable" prefHeight="200">
+            <!-- Header -->
+            <Label text="Medical Store Dashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+            <!-- KPIs Section -->
+            <HBox spacing="30">
+                <Label fx:id="dailySales" text="Daily Sales: ₹0" style="-fx-font-size: 16px;"/>
+                <Label fx:id="totalProfit" text="Total Profit: ₹0" style="-fx-font-size: 16px;"/>
+                <Label fx:id="pendingRx" text="Pending Prescriptions: 0" style="-fx-font-size: 16px;"/>
+                <Label fx:id="lowStock" text="Low Stock: 0" style="-fx-font-size: 16px;"/>
+            </HBox>
+
+            <!-- Inventory Section -->
+            <VBox spacing="10">
+                <Label text="Inventory" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                <!-- Search Field -->
+                <HBox spacing="10">
+                    <Label text="Search Medicine:"/>
+                    <TextField fx:id="searchMedicine" promptText="Enter medicine name"/>
+                </HBox>
+
+                <!-- Inventory Table -->
+                <TableView fx:id="inventoryTable" prefHeight="200">
                     <columns>
-                        <TableColumn text="Medicine" fx:id="billColName"/>
-                        <TableColumn text="Qty" fx:id="billColQty"/>
-                        <TableColumn text="Price" fx:id="billColPrice"/>
-                        <TableColumn text="GST" fx:id="billColGST"/>
-                        <TableColumn text="Total" fx:id="billColTotal"/>
+                        <TableColumn fx:id="colMedicine" text="Medicine" prefWidth="200"/>
+                        <TableColumn fx:id="colBatch" text="Batch" prefWidth="100"/>
+                        <TableColumn fx:id="colExpiry" text="Expiry" prefWidth="120"/>
+                        <TableColumn fx:id="colHSN" text="HSN" prefWidth="80"/>
+                        <TableColumn fx:id="colStock" text="Stock" prefWidth="80"/>
                     </columns>
                 </TableView>
-                <Label text="Total: ₹" />
-                <Label fx:id="lblTotal" text="0"/>
-                <Button text="Generate Invoice" fx:id="btnGenerateInvoice"/>
-            </children>
-        </VBox>
-    </right>
+            </VBox>
 
-</BorderPane>
+            <!-- Billing Section -->
+            <VBox spacing="10">
+                <Label text="Billing" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                <TableView fx:id="billingTable" prefHeight="200">
+                    <columns>
+                        <TableColumn fx:id="billColName" text="Medicine" prefWidth="200"/>
+                        <TableColumn fx:id="billColQty" text="Quantity" prefWidth="100"/>
+                        <TableColumn fx:id="billColPrice" text="Price" prefWidth="100"/>
+                        <TableColumn fx:id="billColGST" text="GST (%)" prefWidth="80"/>
+                        <TableColumn fx:id="billColTotal" text="Total" prefWidth="120"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Total Amount:" style="-fx-font-size: 16px;"/>
+                    <Label fx:id="lblTotal" text="₹0" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <HBox spacing="20">
+                    <Button fx:id="btnAddBill" text="Add to Bill" prefWidth="120"/>
+                    <Button fx:id="btnGenerateInvoice" text="Generate Invoice" prefWidth="150"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </children>
+</AnchorPane>
