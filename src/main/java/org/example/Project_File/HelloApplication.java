@@ -1,4 +1,4 @@
-package org.example.finall_project_1;
+package org.example.Project_File;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource(
-                        "/org/example/finall_project_1/login-view.fxml"
+                        "/org/example/Project_File/login-view.fxml"
                 )
         );
 
@@ -24,7 +24,7 @@ public class HelloApplication extends Application {
         // Correct CSS path
         scene.getStylesheets().add(
                 getClass().getResource(
-                        "/org/example/finall_project_1/style.css"
+                        "/org/example/Project_File/style.css"
                 ).toExternalForm()
         );
 

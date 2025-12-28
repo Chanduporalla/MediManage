@@ -1,4 +1,4 @@
-package org.example.finall_project_1;
+package org.example.Project_File;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,7 +77,7 @@ public class LoginController {
         try {
             Parent root = FXMLLoader.load(
                     Objects.requireNonNull(getClass().getResource(
-                            "/org/example/finall_project_1/dashboard-view.fxml"
+                            "/org/example/Project_File/dashboard-view.fxml"
                     ))
             );
 

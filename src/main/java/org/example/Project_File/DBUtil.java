@@ -1,4 +1,4 @@
-package org.example.finall_project_1;
+package org.example.Project_File;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,8 +7,7 @@ import java.sql.Statement;
 
 public class DBUtil {
 
-    private static final String DB_URL =
-            "jdbc:sqlite:/home/chandu/Desktop/final_project/finall_project_1/users.db";
+    private static final String DB_URL = "jdbc:sqlite:users.db";
 
     // Get DB connection
     public static Connection getConnection() throws SQLException {

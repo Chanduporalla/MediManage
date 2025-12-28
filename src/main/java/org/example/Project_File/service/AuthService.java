@@ -1,6 +1,6 @@
-package org.example.finall_project_1.service;
+package org.example.Project_File.service;
 
-import org.example.finall_project_1.config.DatabaseConfig;
+import org.example.Project_File.config.DatabaseConfig;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

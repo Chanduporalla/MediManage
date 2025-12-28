@@ -1,4 +1,4 @@
-package org.example.finall_project_1.config;
+package org.example.Project_File.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
