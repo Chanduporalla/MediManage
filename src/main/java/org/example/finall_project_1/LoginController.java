@@ -1,4 +1,4 @@
-package org.example.finall_project_1.controller;
+package org.example.finall_project_1;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
